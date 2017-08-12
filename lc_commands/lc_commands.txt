@@ -1,0 +1,53 @@
+# Author    : Bhishan Poudel
+# Date      : Oct 03, 2016
+
+
+1.
+let's say i have a datafile sample.dat with header
+#       X       Y       temp    index   file
+and some data
+
+
+2. To create lc catalog file from ascii dat file:
+
+
+
+lc -C -N '1 2 r' -n temp -n index -t file -H 'title = {foo}' -H 'e = 2.1718' < sample.dat | lc -O
+
+lc -C -N '1 2 r' -n temp -n index -t file -H 'title = {foo}' -H 'e = 2.1718' < sample.dat > sample.cat ; lc -O < sample.cat
+
+3. To print the subset of entries with 'index' > 20 say, do
+ lc -i '%index 20 >' < sample.cat | lc -O
+
+
+4.  to select only items with |r| > 0.3
+
+lc -i '%r %r dot sqrt 0.3 >' < sample.cat | lc -O
+
+
+
+5.
+To append an additional column 'Z' containing 1st component of the r[] vector
+times the numerical header value 'e', prepend a column with a counter 'myID', and
+sort the output values according to |r| do
+
+# without sorting
+lc +cmyID +all 'Z = %r[0] ^e *' < sample.cat | lc -O
+
+# with sorting
+lc +cmyID +all 'Z = %r[0] ^e *' -s '%r %r dot' < sample.cat | lc -O
+
+
+
+##=======================================================================
+        -C              Convert a table of numbers into lc's format.  Must be
+                        first option if used.
+
+        -n name         Create a single number object item 'name'.
+
+        -t name         Create a single text string object item.
+
+        -N string       Create an n-dimensional numeric array object value
+                        num[i][j]... where i = 0..d0-1, j = 0..d1-1 etc.
+                        The string contains the size and name info in the
+                        format 'n d0 d1... name'.

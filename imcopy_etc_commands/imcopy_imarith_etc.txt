@@ -1,0 +1,47 @@
+To create executable called imcopy and imarith
+==============================================
+
+1. google cfitsio
+  go to cfitsio website
+  go to example c programs
+  download the zip file or simply the related source file.
+
+2. compile the source code and get the executable
+
+gcc -Wall -O3 cexamples/imarith.c -o cexamples/imarith -I/usr/local/include -I/usr/include -I /Users/poudel/Applications/cfitsio/include  -L /Users/poudel/Applications/cfitsio/lib -lm -lcfitsio
+
+This gives an executable cexamples/imarith
+
+3. Copy the executable to the PATH of the system
+cp cexamples/imcopy cexamples/imarith cexamples/imstat ~/bin/
+
+which imcopy imarith  imstat
+# This should give imarith is /Users/poudel/bin/imarith etc
+
+4. use it
+imarith in1.fits in2.fits add out.fits; ds9 out.fits &
+imarith in1.fits in2.fits add \!out.fits
+
+
+# operations are: add sub mul div
+# \!  will replace the output fitsfile.
+
+
+
+
+5.
+imarith - perform arithmetic on 1 or 2 images
+
+imarith image1[ext] image2[ext] operation outimage  (2 images)
+or
+imarith image[ext] value operation outimage         (1 image)
+
+Add, subtract, multiply, or divide the pixels in one image by another image or a constant and write the result to a new output image. Supported arithmetic operations are 'add', 'sub', 'mul', or 'div' (only the first character need be supplied)
+Examples:
+  imarith in1.fit in2.fit add out.fit     - add the 2 images
+  imarith in.fit 1.2 mul out.fit         - multiply image by 1.1
+  imarith 'in1.fit[1:20,1:20]' 'in2.fit[1:20,1:20]' add \!out.fit
+     - add 2 image sections; also overwrite out.fit if it exists.
+  imarith data.fit[1] data.fit[2] mul out.fit - multiply the images
+               in the 1st and 2nd extensions of the file data.fit
+This program first opens the input images. If 2 images, it checks that they have the same dimensions. It then creates the empty output file and copies the header of the first image into it (thus duplicating the size and data type of that image). Memory is allocated to hold one row of the images. The program computes the output image values by reading one row at a time from the input image(s), performing the desired arithmetic operation, and then writing the resulting row to the output file. The program reads and writes the row of data in double precision format, regardless of the intrinsic datatype of the images; CFITSIO transparently converts the data format if necessary as the rows are read and written. This program also supports 3D data cubes by looping through each plane of the cube. (See a listing of imarith).

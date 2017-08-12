@@ -1,0 +1,29 @@
+# Author    : Bhishan Poudel
+# Date      : Oct 03, 2016
+
+
+#            bin              r          ngals             et        eterror         rkappa          kappa     kappaerror             nu
+
+1. First create catalogs
+
+lc -C -n bin -n r -n ngals -n et -n eterror -n rkappa -n kappa -n kappaerror -n nu < color_galshear_shear.dat > color_galshear_shear.cat
+lc -C -n bin -n r -n ngals -n et -n eterror -n rkappa -n kappa -n kappaerror -n nu < monochromatic_galshear_shear.dat > monochromatic_galshear_shear.cat
+
+
+2. Here 3 columns are same (bin r  ngals ) and 6 columns have different values but same header
+   (et eterror rkappa  kappa kappaerror nu)
+
+
+So we have to make newa.cat and newb.cat with 3+6+6 columns with different column names
+
+
+
+so that newa.cat  has last 6 columns zero
+	newb.cat has  related 6 columns zero
+
+Then, we can combine them using catcats newa.cat newb.cat > ab.cat
+
+
+
+
+

@@ -1,0 +1,17 @@
+# text format catalogue file --- do not edit manually, use 'lc'
+# header:
+# text     1 1         model_type                   2Dpoly
+# number   1 1         dim                              11
+# number   1 1         nmodes                            1
+# text     1 1         xname                             x
+# number   1 2         xorigin                           0              0
+# number   1 1         nvar                              1
+# text     1 1         byteorder             LITTLE_ENDIAN
+# comment: spatial polynomial parameter file
+# comment: history: fit2Dpolymodel x 0 0 st 
+# contents: 3
+# number   1 1         l                   
+# number   1 1         m                   
+# number   1 11        st                  
+#              l              m          st[0]          st[1]          st[2]          st[3]          st[4]          st[5]          st[6]          st[7]          st[8]          st[9]         st[10]
+               0              0     0.97266021  -0.0005335611 -0.00040408808     0.97410304     0.11350418 -0.00016655456 -0.00018416555     0.11391938   -0.017396463    0.050478835      9.0316465

@@ -1,0 +1,8 @@
+# Author    : Bhishan Poudel
+# Date      : Sep 14, 2016
+
+To save plot
+##
+
+
+-T 'title' '-d namefile.ps/ps'

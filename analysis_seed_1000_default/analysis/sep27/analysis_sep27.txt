@@ -1,0 +1,28 @@
+# Author    : Bhishan Poudel
+# Date      : Sep 27, 2016
+
+
+1. create cat files for color_mono_galshear_shear and color_mono_galshear_ellip
+
+lc -C -n r -n rkappa -n ngals -n gm -n gmerr -n gc -n gcerr < color_mono_galshear_shear.dat > color_mono_galshear_shear.cat
+lc -C -n r -n rkappa -n ngals -n em -n emerr -n ec -n ecerr < color_mono_galshear_ellip.dat > color_mono_galshear_ellip.cat
+
+
+
+2. plot rg versus Pgmod
+
+    plotcat r em < color_mono_galshear_ellip.cat 
+    plotcat r gm < color_mono_galshear_shear.cat 
+    plotcat r gc < color_mono_galshear_shear.cat 
+    plotcat r 'erat = %ec %em /' < color_mono_galshear_ellip.cat 
+    plotcat r 'erat = %ec %em - %em /' < color_mono_galshear_ellip.cat 
+    plotcat r 'erat = %gc %gm - %gm /' < color_mono_galshear_shear.cat 
+    plotcat r gc < color_mono_galshear_shear.cat
+
+
+
+
+##==============================================================================
+## To do
+##==============================================================================
+
